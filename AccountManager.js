@@ -29,7 +29,7 @@ const signUp=async(req,res)=>{
                 from: 'padmapriyakarthik97@gmail.com', // sender address
                 to: req.body.email, // list of receivers
                 subject: "Account activation", // Subject line
-                html: '<p>Hai '+req.body.name+' !</p> <p>We are delighted to have you on board</p>Click <a href="http://localhost:4000/activate-user/' + token + '">here</a> to activate your account'
+                html: '<p>Hai '+req.body.name+' !</p> <p>We are delighted to have you on board</p>Click <a href="https://xseed-client.herokuapp.com/activate-user/' + token + '">here</a> to activate your account'
                 } ,function(error,info){if(error){console.log(error)}else{console.log(info.response)}}) 
                       res.status(200).json({
                         message:"Account activation link has been sent to your mail.",status:200
