@@ -1,4 +1,4 @@
-const baseurl= "https://xseed-client.herokuapp.com"||"http://localhost:3000" ;
+const baseurl= "https://xseed-client.herokuapp.com"/*||"http://localhost:3000"*/ ;
 
 require('dotenv').config();
 
