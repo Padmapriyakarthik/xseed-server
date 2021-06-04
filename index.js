@@ -12,7 +12,7 @@ const { signUp, activateToken, signIn } = require('./AccountManager');
 const { totalCount, matchList, getDetail } = require('./MatchManager');
 
 const {authenticate}=require('./Authenticate')
-const port=/*process.env.PORT ||*/ 4000;
+const port=process.env.PORT || 4000;
 
 app.post("/signup",signUp)
 
