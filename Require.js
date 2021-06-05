@@ -1,4 +1,4 @@
-const baseurl= "https://icl-data.herokuapp.com"/*||"http://localhost:3000"*/ ;
+const baseurl= "https://icl-data.herokuapp.com" /*||"http://localhost:3000"*/;
 
 require('dotenv').config();
 
@@ -21,6 +21,6 @@ const transporter=nodemailer.createTransport({
     }
 });
 
-const dbUrl=process.env.DB_URL || "mongodb://127.0.0.1:27017";
+const dbUrl=process.env.DB_URL /*||   "mongodb://127.0.0.1:27017"*/
 
 module.exports={mongoClient,objectId,dbUrl,JWT,JWT_SECRET,transporter,baseurl}

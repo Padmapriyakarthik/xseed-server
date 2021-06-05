@@ -116,4 +116,42 @@ async function getTeam(){
     }
 }
 
-module.exports={totalDataCount,getMatchList,getMatchdetail,getSeason,getTeam}
+async function getvenue(){
+    const client = await mongoClient.connect(dbUrl);
+    if(client){
+        try {
+            const db = client.db("cricket");
+            const venue= await db.collection("matches").distinct("venue");
+            client.close();
+            return venue;
+        }catch(error){
+            console.log(error);
+            client.close();
+        }
+    }else{
+        return 0;
+    }
+}
+
+async function headprediction(team1,team2){
+    const client = await mongoClient.connect(dbUrl);
+    if(client){
+        try {
+            const db = client.db("cricket");
+            var filters={};
+            filters.$or=[{
+                $and:[{"team1":team1},{"team2":team2}]
+            },{$and:[{"team1":team2},{"team2":team1}]}]
+            const predict= await db.collection("matches").find(filters).project({winner:1,result:1,_id:0}).toArray();
+            
+            client.close();
+            return predict;
+        }catch(error){
+            console.log(error);
+            client.close();
+        }
+    }else{
+        return 0;
+    }
+}
+module.exports={totalDataCount,getMatchList,getMatchdetail,getSeason,getTeam,getvenue,headprediction}

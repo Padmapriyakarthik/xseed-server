@@ -1,4 +1,4 @@
-const {totalDataCount,getMatchList, getMatchdetail, getSeason ,getTeam}=require('./Matches');
+const {totalDataCount,getMatchList, getMatchdetail, getSeason ,getTeam,getvenue}=require('./Matches');
 
 const totalCount=async(req,res)=>{
     try{
@@ -100,4 +100,16 @@ const teamList=async(req,res)=>{
     }
 }
 
-module.exports={totalCount,matchList,getDetail,seasonlist,teamList}
+const venuelist=async(req,res)=>{
+    try{
+        const venue=await getvenue();
+        if(venue){
+            res.status(200).json({venue});
+        }else{
+            res.status(400).json({error:"something went wrong"});
+        }
+    }catch(error){
+        console.log(error);
+    }
+}
+module.exports={totalCount,matchList,getDetail,seasonlist,teamList,venuelist}

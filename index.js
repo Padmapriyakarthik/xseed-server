@@ -9,11 +9,12 @@ app.use(cors());
 require('dotenv').config();
 
 const { signUp, activateToken, signIn,currentUser,addFavouriteTeam,removeFavouriteTeam } = require('./AccountManager');
-const { totalCount, matchList, getDetail , seasonlist,teamList} = require('./MatchManager');
+const { totalCount, matchList, getDetail , seasonlist,teamList,venuelist} = require('./MatchManager');
 
 const {authenticate}=require('./Authenticate');
+const { predict } = require('./Prediction');
 
-const port=process.env.PORT || 4000;
+const port=process.env.PORT /*|| 4000*/;
 
 //signup
 app.post("/signup",signUp)
@@ -39,6 +40,8 @@ app.get("/season",seasonlist)
 // team filter
 app.get("/team",teamList)
 
+//venue filter
+app.get("/venue",venuelist)
 //get current user
 app.get("/users",authenticate,currentUser)
 
@@ -47,5 +50,8 @@ app.put('/users/favourite',authenticate,addFavouriteTeam)
 
 // remove favourite team
 app.put('/users/remove',authenticate,removeFavouriteTeam)
+
+//prediction
+app.get('/prediction',predict)
 
 app.listen(port,()=>{console.log("App Started",port)});
