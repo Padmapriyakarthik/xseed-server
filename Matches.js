@@ -1,5 +1,6 @@
 const {mongoClient,dbUrl, objectId}=require('./Require')
 
+
 async function totalDataCount(team,season){
     const client = await mongoClient.connect(dbUrl);
     if(client){

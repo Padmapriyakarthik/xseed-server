@@ -61,6 +61,7 @@ const generatedetail=async (detail)=>{
     try{
         if(detail.result=="tie"){
             detail.winner=" ";
+            detail.result="Tie";
         }
         else if(detail.win_by_runs!=0){
             detail.result="won by "+detail.win_by_runs+" runs";

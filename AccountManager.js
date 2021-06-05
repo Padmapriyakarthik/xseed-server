@@ -1,6 +1,6 @@
 
 const bcrypt=require('bcrypt');
-const {createUser, findUser,confirmUser}=require("./User")
+const {createUser, findUser,confirmUser,updateTeam,removeFavourite }=require("./User")
 const {JWT,JWT_SECRET,baseurl}=require('./Require')
 const nodemailer=require('nodemailer');
 
@@ -93,4 +93,48 @@ const signIn=async(req,res)=>{
     }
 }
 
-module.exports={signUp,activateToken,signIn}
+const currentUser=async(req,res)=>{
+    try{
+        const {email}=req.body;
+        const user=await findUser(email);
+        if(user){
+            res.status(200).json({user});
+        }else{
+            res.status(400).json({error:"Something went wrong"})
+        }
+
+    }catch(error){
+        console.log(error);
+    }
+}
+
+const addFavouriteTeam=async(req,res)=>{
+    try{
+        const {email}=req.body;
+        const {favouriteteam}=req.body
+        const user=await updateTeam(email,favouriteteam);
+        if(user){
+            res.status(200).json({user});
+        }else{
+            res.status(400).json({error:"Something went wrong"})
+        }
+
+    }catch(error){
+        console.log(error);
+    }
+}
+const removeFavouriteTeam=async(req,res)=>{
+    try{
+        const {email}=req.body;
+        const user=await removeFavourite(email);
+        if(user){
+            res.status(200).json({user});
+        }else{
+            res.status(400).json({error:"Something went wrong"})
+        }
+
+    }catch(error){
+        console.log(error);
+    }
+}
+module.exports={signUp,activateToken,signIn,currentUser,addFavouriteTeam,removeFavouriteTeam}
