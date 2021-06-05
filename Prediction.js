@@ -37,8 +37,8 @@ function generatePrediction(list,team1,team2){
             }
         }
         let totalcount=team1count+team2count;
-        let team1predict=Math.floor((team1count/totalcount)*100);
-        let team2predict=Math.floor((team2count/totalcount)*100);
+        let team1predict=Math.round((team1count/totalcount)*100);
+        let team2predict=Math.round((team2count/totalcount)*100);
         var result={team1count,team2count,tiecount,team1predict,team2predict}
         console.log(result);
         return result;
