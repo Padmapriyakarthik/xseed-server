@@ -51,7 +51,7 @@ const activateToken=async(req,res)=>{
                    const user=await confirmUser(decode.email);
                     if(user)
                     {
-                     res.redirect("https://xseed-client.herokuapp.com/redirectlogin");
+                     res.redirect("https://icl-data.herokuapp.com/redirectlogin");
                     }          
                 }else{
                     res.status(401).json({message:"invalid token"});
