@@ -13,7 +13,7 @@ const { totalCount, matchList, getDetail , seasonlist,teamList} = require('./Mat
 
 const {authenticate}=require('./Authenticate');
 
-const port=/*process.env.PORT ||*/ 4000;
+const port=process.env.PORT || 4000;
 
 //signup
 app.post("/signup",signUp)
